@@ -32,6 +32,8 @@ public class 最长回文串 {
 
     public static void main(String[] args) {
         System.out.println('A' == 'a');
+        System.out.println('1'+1);
+        System.out.println(' '+1);
         System.out.println('A' + 1);
         System.out.println('a' + 1);
     }
