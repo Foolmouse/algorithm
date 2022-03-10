@@ -1,5 +1,8 @@
 package net.coding.leetCode;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * 翻转一棵二叉树。
  *
@@ -42,6 +45,30 @@ public class 翻转二叉树 {
         root.left = root.right;
         root.right = midNode;
         return root;
+    }
+
+    /**
+     * 层序遍历
+     * @param node
+     * @return
+     */
+    public static TreeNode reverse(TreeNode node){
+
+        final LinkedList<Object> list = new LinkedList<>();
+        list.add(node);
+        while(!list.isEmpty()){
+
+            final TreeNode left = node.left;
+            node.left = node.right;
+            node.right = left;
+            if (node.left != null) {
+                list.add(node.left);
+            }
+            if (node.right != null) {
+                list.add(node.right);
+            }
+        }
+        return node;
     }
 
     public static void main(String[] args) {
