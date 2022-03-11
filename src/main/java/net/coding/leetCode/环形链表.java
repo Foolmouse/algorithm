@@ -47,19 +47,48 @@ import java.util.HashSet;
  */
 public class 环形链表 {
 
-    public boolean hasCycle(ListNode head) {
-        if (head == null || head.next == null) {
-            return false;
-        }
-        HashSet<ListNode> set = new HashSet<>();
-        while (head.next != null) {
-            if (set.contains(head)) {
-                return true;
-            }
-            set.add(head);
-            head = head.next;
-        }
-        return false;
-    }
+	/**
+	 * 通过 hashset 判断是否重复元素
+	 *
+	 * @param head
+	 * @return
+	 */
+	public boolean hasCycle(ListNode head) {
+		if (head == null || head.next == null) {
+			return false;
+		}
+		HashSet<ListNode> set = new HashSet<>();
+		while (head.next != null) {
+			if (set.contains(head)) {
+				return true;
+			}
+			set.add(head);
+			head = head.next;
+		}
+		return false;
+	}
+
+
+	/**
+	 * 快慢指针
+	 *
+	 * @param head
+	 * @return
+	 */
+	public boolean hasCycle2(ListNode head) {
+		ListNode quickly = head;
+		ListNode slow = head;
+
+		// 一块一慢,如果有环,终会相遇
+		while (slow.next != null && quickly.next.next != null) {
+			slow = slow.next;
+			quickly = quickly.next.next;
+			if (slow == quickly) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 
 }

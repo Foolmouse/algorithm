@@ -51,36 +51,62 @@ import java.util.LinkedHashMap;
 public class 合并两个有序数组 {
 
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        if (m == 0) {
-            //copy nums2 to nums1
-            for (int i = 0; i < nums2.length; i++) {
-                nums1[i] = nums2[i];
+
+        int i1=0;
+        int i2=0;
+        int[] arr = new int[m+n];
+        while(i1< m || i2 < n){
+            if(i1>=m){
+                arr[i1+i2] = nums2[i2];
+                i2++;
+            }else if(i2 >=n) {
+                arr[i1+i2] = nums1[i1];
+                i1++;
+            }else if(nums1[i1] >= nums2[i2]){
+                arr[i1+i2] = nums2[i2];
+                i2 ++;
+            }else if(nums1[i1] < nums2[i2]){
+                arr[i1+i2] = nums1[i1];
+                i1 ++;
             }
+
         }
-        if (n == 0) {
-            // do no thing
-            return;
+
+        for(int i=0;i<arr.length; i++){
+            nums1[i] =arr[i];
         }
-        //将两个数组都放到map
-        HashMap<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < m; i++) {
-            map.putIfAbsent(nums1[i], 0);
-            map.computeIfPresent(nums1[i], (key, value) -> ++value);
-        }
-        for (int i = 0; i < n; i++) {
-            map.putIfAbsent(nums2[i], 0);
-            map.computeIfPresent(nums2[i], (key, value) -> ++value);
-        }
-        int index = 0;
-        for (int i = -109; i <= 109; i++) {
-            if (!map.containsKey(i))
-                continue;
-            Integer count = map.get(i);
-            for (int j = 0; j < count; j++) {
-                nums1[index] = i;
-                index++;
-            }
-        }
+
+
+//        if (m == 0) {
+//            //copy nums2 to nums1
+//            for (int i = 0; i < nums2.length; i++) {
+//                nums1[i] = nums2[i];
+//            }
+//        }
+//        if (n == 0) {
+//            // do no thing
+//            return;
+//        }
+//        //将两个数组都放到map
+//        HashMap<Integer, Integer> map = new HashMap<>();
+//        for (int i = 0; i < m; i++) {
+//            map.putIfAbsent(nums1[i], 0);
+//            map.computeIfPresent(nums1[i], (key, value) -> ++value);
+//        }
+//        for (int i = 0; i < n; i++) {
+//            map.putIfAbsent(nums2[i], 0);
+//            map.computeIfPresent(nums2[i], (key, value) -> ++value);
+//        }
+//        int index = 0;
+//        for (int i = -109; i <= 109; i++) {
+//            if (!map.containsKey(i))
+//                continue;
+//            Integer count = map.get(i);
+//            for (int j = 0; j < count; j++) {
+//                nums1[index] = i;
+//                index++;
+//            }
+//        }
 
     }
 
