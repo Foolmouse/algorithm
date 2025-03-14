@@ -1,6 +1,8 @@
 package net.coding.leetCode;
 
-import javafx.util.Pair;
+
+
+import main.java.net.coding.Pair;
 
 import java.util.LinkedList;
 

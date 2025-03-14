@@ -10,4 +10,8 @@ public class ListNode {
         val = x;
     }
 
+    public static void main(String[] args) {
+
+    }
+
 }
